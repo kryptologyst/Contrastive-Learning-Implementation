@@ -1,0 +1,103 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - model: simclr
+  - dataset: cifar10
+  - optimizer: adam
+  - scheduler: cosine
+  - augmentation: simclr_aug
+  - _self_
+
+# Experiment configuration
+experiment:
+  name: "contrastive_learning_experiment"
+  tags: ["contrastive", "self_supervised", "cv"]
+  notes: "Contrastive learning implementation with multiple methods"
+
+# Training configuration
+train:
+  epochs: 100
+  batch_size: 256
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+  gradient_clip_norm: 1.0
+  accumulate_grad_batches: 1
+  mixed_precision: true
+  
+# Validation configuration
+val:
+  batch_size: 256
+  num_workers: 4
+  pin_memory: true
+  
+# Testing configuration
+test:
+  batch_size: 256
+  num_workers: 4
+  pin_memory: true
+
+# Model configuration
+model:
+  projection_dim: 128
+  temperature: 0.5
+  hidden_dim: 512
+  
+# Data configuration
+data:
+  root_dir: "./data"
+  image_size: 224
+  num_classes: 10
+  
+# Augmentation configuration
+augmentation:
+  color_jitter_strength: 0.8
+  gaussian_blur_prob: 0.5
+  solarize_prob: 0.0
+  
+# Optimizer configuration
+optimizer:
+  lr: 0.0001
+  weight_decay: 1e-6
+  
+# Scheduler configuration
+scheduler:
+  warmup_epochs: 10
+  min_lr: 1e-6
+  
+# Logging configuration
+logging:
+  log_dir: "./logs"
+  log_every_n_steps: 50
+  val_check_interval: 1.0
+  save_top_k: 3
+  monitor: "val_loss"
+  mode: "min"
+  
+# Reproducibility
+seed: 42
+deterministic: true
+benchmark: false
+
+# Device configuration
+device: "auto"  # auto, cuda, mps, cpu
+
+# Evaluation configuration
+eval:
+  knn_k: 20
+  knn_t: 0.07
+  knn_epochs: 200
+  
+# Paths
+paths:
+  data_dir: "./data"
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+  asset_dir: "./assets"
+  
+# Safety and compliance
+safety:
+  disclaimer: true
+  research_only: true
+  no_production: true

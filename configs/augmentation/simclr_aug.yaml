@@ -1,0 +1,8 @@
+# @package augmentation
+
+_target_: src.data.augmentations.SimCLRAugmentation
+
+image_size: ${data.image_size}
+color_jitter_strength: ${augmentation.color_jitter_strength}
+gaussian_blur_prob: ${augmentation.gaussian_blur_prob}
+solarize_prob: ${augmentation.solarize_prob}

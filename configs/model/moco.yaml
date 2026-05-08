@@ -1,0 +1,12 @@
+# @package model
+
+_target_: src.models.moco.MoCo
+
+base_model: "resnet50"
+pretrained: true
+projection_dim: ${model.projection_dim}
+hidden_dim: ${model.hidden_dim}
+temperature: ${model.temperature}
+momentum: 0.999
+queue_size: 65536
+freeze_backbone: false

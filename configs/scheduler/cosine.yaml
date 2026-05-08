@@ -1,0 +1,9 @@
+# @package scheduler
+
+_target_: src.train.schedulers.CosineAnnealingWarmupRestarts
+
+T_0: 10
+T_mult: 2
+eta_min: ${scheduler.min_lr}
+warmup_epochs: ${scheduler.warmup_epochs}
+warmup_start_lr: 1e-6

@@ -1,0 +1,8 @@
+# @package dataset
+
+_target_: src.data.datasets.CIFAR10Dataset
+
+root_dir: ${data.root_dir}
+image_size: ${data.image_size}
+num_classes: ${data.num_classes}
+download: true
